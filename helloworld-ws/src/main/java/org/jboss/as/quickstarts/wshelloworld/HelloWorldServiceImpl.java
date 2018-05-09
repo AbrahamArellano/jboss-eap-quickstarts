@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.inject.Inject;
 import javax.jws.WebService;
 
 /**
@@ -31,7 +32,12 @@ import javax.jws.WebService;
     targetNamespace = "http://www.jboss.org/eap/quickstarts/wshelloworld/HelloWorld")
 public class HelloWorldServiceImpl implements HelloWorldService {
 	
+	// Logger
 	private Logger LOG = Logger.getLogger(HelloWorldServiceImpl.class.getName());
+	
+	@Inject
+	private ProcessorComponent processor;
+	
 
     @Override
     public String sayHello() {
@@ -56,12 +62,21 @@ public class HelloWorldServiceImpl implements HelloWorldService {
     @Override
     public String longProcessExecution(int time) {
     	LOG.info("Long process starting...");
-    	String message = "Process completed";
+    	String message = "Process completed in " + time + " millisencond";
     	try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
 			message = "Sleep interrupted!";
 		}
+    	LOG.info(message);
+    	return message;
+    }
+    
+    @Override
+    public String longProcessExecutionDelegated(int time) {
+    	LOG.info("Delegated long process starting...");
+    	String message = processor.longTermProcess(time);
+    	LOG.info(message);
     	return message;
     }
 

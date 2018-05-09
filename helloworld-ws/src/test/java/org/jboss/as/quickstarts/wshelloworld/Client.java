@@ -84,4 +84,12 @@ public class Client implements HelloWorldService {
 	public String longProcessExecution(int time) {
 		return helloWorldService.longProcessExecution(5000);
 	}
+	
+    /**
+     * Simulates a 5 seconds process
+     */
+	@Override
+	public String longProcessExecutionDelegated(int time) {
+		return helloWorldService.longProcessExecutionDelegated(5000);
+	}
 }

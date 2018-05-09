@@ -17,11 +17,13 @@
 package org.jboss.as.quickstarts.wshelloworld;
 
 import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 /**
- * A simple example of how to setup a JAX-WS Web Service. It can say hello to everyone or to someone in particular.
+ * A simple example of how to setup a JAX-WS Web Service. It can say hello to
+ * everyone or to someone in particular.
  *
  * @author lnewson@redhat.com
  */
@@ -29,38 +31,52 @@ import javax.jws.WebService;
 @WebService(targetNamespace = "http://www.jboss.org/eap/quickstarts/wshelloworld/HelloWorld")
 public interface HelloWorldService {
 
-    /**
-     * Say hello as a response
-     *
-     * @return A simple hello world message
-     */
-    @WebMethod
-    String sayHello();
+	/**
+	 * Say hello as a response
+	 *
+	 * @return A simple hello world message
+	 */
+	@WebMethod
+	String sayHello();
 
-    /**
-     * Say hello to someone precisely
-     *
-     * @param name The name of the person to say hello to
-     * @return the number of current bookings
-     */
-    @WebMethod
-    String sayHelloToName(String name);
+	/**
+	 * Say hello to someone precisely
+	 *
+	 * @param name
+	 *            The name of the person to say hello to
+	 * @return the number of current bookings
+	 */
+	@WebMethod
+	String sayHelloToName(String name);
 
-    /**
-     * Say hello to a list of people
-     *
-     * @param names The list of names to say hello to
-     * @return the number of current bookings
-     */
-    @WebMethod
-    String sayHelloToNames(List<String> names);
-    
-    /**
-     * Simulate the execution of a long running process
-     *
-     * @param time that the process will last in milliseconds
-     * @return A message when it is completed
-     */
-    @WebMethod
-    String longProcessExecution(int time);
+	/**
+	 * Say hello to a list of people
+	 *
+	 * @param names
+	 *            The list of names to say hello to
+	 * @return the number of current bookings
+	 */
+	@WebMethod
+	String sayHelloToNames(List<String> names);
+
+	/**
+	 * Simulate the execution of a long running process
+	 *
+	 * @param time
+	 *            that the process will last in milliseconds
+	 * @return A message when it is completed
+	 */
+	@WebMethod
+	String longProcessExecution(int time);
+
+	/**
+	 * Simulate the execution of a long running process, delegating the long running
+	 * process to a different component.
+	 *
+	 * @param time
+	 *            that the process will last in milliseconds
+	 * @return A message when it is completed
+	 */
+	@WebMethod
+	String longProcessExecutionDelegated(int time);
 }
