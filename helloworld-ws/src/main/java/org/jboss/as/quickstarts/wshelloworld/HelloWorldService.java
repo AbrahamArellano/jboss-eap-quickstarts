@@ -54,4 +54,13 @@ public interface HelloWorldService {
      */
     @WebMethod
     String sayHelloToNames(List<String> names);
+    
+    /**
+     * Simulate the execution of a long running process
+     *
+     * @param time that the process will last in milliseconds
+     * @return A message when it is completed
+     */
+    @WebMethod
+    String longProcessExecution(int time);
 }

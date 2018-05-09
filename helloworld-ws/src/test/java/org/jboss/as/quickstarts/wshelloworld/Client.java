@@ -76,4 +76,12 @@ public class Client implements HelloWorldService {
     public String sayHelloToNames(final List<String> names) {
         return helloWorldService.sayHelloToNames(names);
     }
+
+    /**
+     * Simulates a 5 seconds process
+     */
+	@Override
+	public String longProcessExecution(int time) {
+		return helloWorldService.longProcessExecution(5000);
+	}
 }

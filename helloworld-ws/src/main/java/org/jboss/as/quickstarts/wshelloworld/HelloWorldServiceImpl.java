@@ -18,6 +18,7 @@ package org.jboss.as.quickstarts.wshelloworld;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.jws.WebService;
 
@@ -29,6 +30,8 @@ import javax.jws.WebService;
 @WebService(serviceName = "HelloWorldService", portName = "HelloWorld", name = "HelloWorld", endpointInterface = "org.jboss.as.quickstarts.wshelloworld.HelloWorldService",
     targetNamespace = "http://www.jboss.org/eap/quickstarts/wshelloworld/HelloWorld")
 public class HelloWorldServiceImpl implements HelloWorldService {
+	
+	private Logger LOG = Logger.getLogger(HelloWorldServiceImpl.class.getName());
 
     @Override
     public String sayHello() {
@@ -48,6 +51,18 @@ public class HelloWorldServiceImpl implements HelloWorldService {
     @Override
     public String sayHelloToNames(final List<String> names) {
         return "Hello " + createNameListString(names);
+    }
+    
+    @Override
+    public String longProcessExecution(int time) {
+    	LOG.info("Long process starting...");
+    	String message = "Process completed";
+    	try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			message = "Sleep interrupted!";
+		}
+    	return message;
     }
 
     /**
@@ -86,4 +101,6 @@ public class HelloWorldServiceImpl implements HelloWorldService {
 
         return nameBuilder.toString();
     }
+    
+
 }
