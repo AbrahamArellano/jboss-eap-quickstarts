@@ -48,10 +48,14 @@ public class HelloWorldQueueMDB implements MessageListener {
             if (rcvMessage instanceof TextMessage) {
                 msg = (TextMessage) rcvMessage;
                 LOGGER.info("Received Message from queue: " + msg.getText());
+                LOGGER.info("Starting processing... " + msg.getText());
+                // processing time
+                Thread.sleep(15000);
+                LOGGER.info("Processing completed" + msg.getText());
             } else {
                 LOGGER.warning("Message of wrong type: " + rcvMessage.getClass().getName());
             }
-        } catch (JMSException e) {
+        } catch (JMSException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
